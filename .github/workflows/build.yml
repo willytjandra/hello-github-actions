@@ -28,3 +28,6 @@ jobs:
 
           tag="$buildDate.$runNumber"
           echo "tag: $tag"
+
+          git tag $tag
+          git push origin $tag
