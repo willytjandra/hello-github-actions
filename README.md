@@ -8,3 +8,6 @@
 
 ## Feature 1
 Adding new feature number 1
+
+## Feature 2
+Adding new feature number 2
