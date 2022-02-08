@@ -18,3 +18,13 @@ jobs:
         run: echo "Building..."
       - name: Run tests
         run: echo "Tests..."
+      - name: Add tag
+        run: |
+          buildDate=$(date +'%Y%m')
+          echo "buildDate=$buildDate"
+
+          runNumber=${GITHUB_RUN_NUMBER}
+          echo "runNumber=$runNumber"
+
+          tag="$buildDate.$runNumber"
+          echo "tag: $tag"
