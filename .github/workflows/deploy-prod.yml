@@ -1,0 +1,22 @@
+name: Deploy to Prod
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy-sandbox:
+    name: Deploy to Sandbox
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy
+        run: echo "Deploying to Sandbox"
+  
+  deploy-prod:
+    name: Deploy to Prod
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy
+        run: echo "Deploying to Production"
