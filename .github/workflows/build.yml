@@ -5,7 +5,7 @@ on:
     branches: main
   workflow_dispatch:
   pull_request:
-    branches: master
+    branches: main
 
 jobs:
   build:
@@ -19,6 +19,7 @@ jobs:
       - name: Run tests
         run: echo "Tests..."
       - name: Add tag
+        if: github.ref == 'refs/heads/main'
         run: |
           buildDate=$(date +'%Y%m')
           echo "buildDate=$buildDate"
