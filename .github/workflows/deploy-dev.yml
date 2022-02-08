@@ -1,25 +1,32 @@
 name: Deploy to Dev
 
 on:
-  workflow_run:
-    workflows: ["CI"]
-    branches: [main]
-    types: [completed]
+  release:
+    types: [published]
 
 jobs:
   deploy-dev:
     name: Deploy to Develop
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v2
       - name: Deploy
         run: echo "Deploying to Develop"
   
+  integration-tests:
+    name: Integration tests
+    needs: [deploy-dev]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy
+        run: echo "Deploying to Develop"
+
+  
   deploy-staging:
     name: Deploy to Staging
+    needs: [deploy-dev, integration-tests]
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v2
       - name: Deploy
